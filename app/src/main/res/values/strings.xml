@@ -3,9 +3,15 @@
     <string name="connect_button">connect</string>
     <string name="ip_field">ip address</string>
     <string name="port_field">port number</string>
-    <string name="connection_error">Cannot connect to server</string>
     <string name="title_activity_top_level_page">TopLevelPage</string>
     <string name="app_description">Welcome!\nFrom this page, you can navigate to all of the features CorrelatR has to offer\n\nGet started by adding at least two types of data to track\nEvery day, add data points for each of your data types\nOnce you\'ve collected some data, view the graphs to see the correlations between your tracked data</string>
     <string name="add_datapoints_button">Add datapoints</string>
     <string name="track_new_data_button">Add new data to track</string>
+    <string name="display_graph_button">Display a graph</string>
+    <string name="track_new_data_hint">New data to track</string>
+    <string name="submit_button">Submit</string>
+    <string name="success">Success!</string>
+    <string name="data_name">Data name</string>
+    <string name="data_value">Data value</string>
+
 </resources>
