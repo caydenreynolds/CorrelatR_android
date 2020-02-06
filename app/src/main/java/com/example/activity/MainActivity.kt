@@ -1,21 +1,14 @@
-package com.example.correlatr
+package com.example.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.correlatr.R
 
-class TopLevelActivity : AppCompatActivity() {
-
-    var ip = ""
-    var port = ""
-
+class MainActivity : ConnectedActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_top_level)
-
-        ip = intent.getStringExtra(EXTRA_IP) as String
-        port = intent.getStringExtra(EXTRA_PORT) as String
+        setContentView(R.layout.activity_main)
     }
 
     fun startTrackNewDataActivity(view: View)
@@ -39,6 +32,15 @@ class TopLevelActivity : AppCompatActivity() {
     fun startDisplayGraphActivity(view: View)
     {
         val intent = Intent(this, DisplayGraphActivity::class.java).apply{
+            putExtra(EXTRA_IP, ip)
+            putExtra(EXTRA_PORT, port)
+        }
+        startActivity(intent)
+    }
+
+    fun connectionActivity(view: View)
+    {
+        val intent = Intent(this, ConnectionActivity::class.java).apply{
             putExtra(EXTRA_IP, ip)
             putExtra(EXTRA_PORT, port)
         }

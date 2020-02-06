@@ -13,5 +13,7 @@
     <string name="success">Success!</string>
     <string name="data_name">Data name</string>
     <string name="data_value">Data value</string>
-
+    <string name="connection_activity_button">Connect to a server</string>
+    <string name="ip_key">ip key</string>
+    <string name="port_key">port key</string>
 </resources>
