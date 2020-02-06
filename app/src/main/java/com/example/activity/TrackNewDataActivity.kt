@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.EditText
 import com.example.client.ChangeColumnTask
 import com.example.correlatr.R
+import com.google.android.material.snackbar.Snackbar
 
 class TrackNewDataActivity : ConnectedActivity() {
 
@@ -17,10 +18,6 @@ class TrackNewDataActivity : ConnectedActivity() {
     {
         val newColumn = findViewById<EditText>(R.id.newcolumnField).text.toString()
         val taskResult = ChangeColumnTask().execute(ip, port, "true",newColumn).get()
-
-        displayStatus(
-            findViewById(R.id.errorField),
-            taskResult
-        )
+        Snackbar.make(view, taskResult.text, Snackbar.LENGTH_SHORT).show()
     }
 }

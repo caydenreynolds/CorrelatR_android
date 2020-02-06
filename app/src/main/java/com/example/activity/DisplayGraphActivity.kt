@@ -1,11 +1,11 @@
 package com.example.activity
 
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import com.example.client.RequestGraphTask
 import com.example.correlatr.R
+import com.google.android.material.snackbar.Snackbar
 
 class DisplayGraphActivity : ConnectedActivity() {
 
@@ -14,10 +14,7 @@ class DisplayGraphActivity : ConnectedActivity() {
         setContentView(R.layout.activity_display_graph)
 
         val taskResult = RequestGraphTask().execute(ip, port, "foo", "bar").get()
-        displayStatus(
-            findViewById(R.id.errorField),
-            taskResult.statusMessage
-        )
+        Snackbar.make(findViewById(R.id.display_img), taskResult.statusMessage.text, Snackbar.LENGTH_SHORT).show()
 
         if (taskResult != null && taskResult.graphImage != null)
         {
