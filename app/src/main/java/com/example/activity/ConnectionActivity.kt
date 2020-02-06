@@ -26,16 +26,12 @@ class ConnectionActivity : ConnectedActivity() {
     {
         //Get the user input
         val ipText = findViewById<EditText>(R.id.IPField).text.toString()
-        if (ipText != "")
-            ip = ipText
-
+        val newIp = if(ipText == "") ip else ipText
         val portText = findViewById<EditText>(R.id.portField).text.toString()
-        if (portText != "")
-            port = portText
-
+        val newPort = if(portText == "") port else portText
 
         //Validate the user input
-        val taskResult = PingServerTask().execute(ip, port).get()
+        val taskResult = PingServerTask().execute(newIp, newPort).get()
         Snackbar.make(view, taskResult.text, Snackbar.LENGTH_SHORT).show()
 
 
@@ -43,8 +39,8 @@ class ConnectionActivity : ConnectedActivity() {
         if (!taskResult.error) {
             val pref = getDefaultSharedPreferences(this)
             with (pref.edit()) {
-                putString(getString(R.string.ip_key), ipText)
-                putString(getString(R.string.port_key), portText)
+                putString(getString(R.string.ip_key), newIp)
+                putString(getString(R.string.port_key), newPort)
                 commit()
             }
         }

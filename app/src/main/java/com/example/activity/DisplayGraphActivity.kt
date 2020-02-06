@@ -18,9 +18,9 @@ class DisplayGraphActivity : ConnectedActivity() {
 
         if (taskResult != null && taskResult.graphImage != null)
         {
-            val display_img = findViewById<ImageView>(R.id.display_img)
-            val image_bitmap = BitmapFactory.decodeByteArray(taskResult.graphImage.toByteArray(), 0, taskResult.graphImage.size())
-            display_img.setImageBitmap(image_bitmap)
+            val displayImg = findViewById<ImageView>(R.id.display_img)
+            val imageBitmap = BitmapFactory.decodeByteArray(taskResult.graphImage.toByteArray(), 0, taskResult.graphImage.size())
+            displayImg.setImageBitmap(imageBitmap)
         }
 
     }
