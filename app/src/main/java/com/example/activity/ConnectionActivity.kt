@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import com.example.client.PingServerTask
 import com.example.correlatr.R
+import com.google.android.material.snackbar.Snackbar
 
 class ConnectionActivity : ConnectedActivity() {
 
@@ -35,7 +36,8 @@ class ConnectionActivity : ConnectedActivity() {
 
         //Validate the user input
         val taskResult = PingServerTask().execute(ip, port).get()
-        displayStatus(findViewById(R.id.errorField), taskResult)
+        Snackbar.make(view, taskResult.text, Snackbar.LENGTH_SHORT).show()
+
 
         //store connection information
         if (!taskResult.error) {

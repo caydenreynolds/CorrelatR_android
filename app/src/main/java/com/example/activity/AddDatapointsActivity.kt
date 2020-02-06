@@ -6,6 +6,7 @@ import android.widget.CalendarView
 import android.widget.EditText
 import com.example.client.UpdateDataTask
 import com.example.correlatr.R
+import com.google.android.material.snackbar.Snackbar
 
 //TODO: In the future, we'll want a listfragment to display this activity
 
@@ -23,9 +24,6 @@ class AddDatapointsActivity : ConnectedActivity() {
         val columnValue = findViewById<EditText>(R.id.dataValue).text.toString()
 
         val taskResult = UpdateDataTask().execute(ip, port, dateMs, columnName, columnValue).get()
-        displayStatus(
-            findViewById(R.id.errorField),
-            taskResult
-        )
+        Snackbar.make(view, taskResult.text, Snackbar.LENGTH_SHORT).show()
     }
 }
