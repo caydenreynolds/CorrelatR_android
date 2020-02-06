@@ -1,25 +1,23 @@
-package com.example.correlatr
+package com.example.activity
 
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import com.example.client.RequestGraphTask
+import com.example.correlatr.R
 
-class DisplayGraphActivity : AppCompatActivity() {
-
-    var ip = ""
-    var port = ""
+class DisplayGraphActivity : ConnectedActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_graph)
 
-        ip = intent.getStringExtra(EXTRA_IP) as String
-        port = intent.getStringExtra(EXTRA_PORT) as String
-
         val taskResult = RequestGraphTask().execute(ip, port, "foo", "bar").get()
-        displayStatus(findViewById(R.id.errorField), taskResult.statusMessage)
+        displayStatus(
+            findViewById(R.id.errorField),
+            taskResult.statusMessage
+        )
 
         if (taskResult != null && taskResult.graphImage != null)
         {
