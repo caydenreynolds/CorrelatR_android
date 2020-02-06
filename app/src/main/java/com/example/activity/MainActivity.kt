@@ -13,37 +13,25 @@ class MainActivity : ConnectedActivity() {
 
     fun startTrackNewDataActivity(view: View)
     {
-        val intent = Intent(this, TrackNewDataActivity::class.java).apply{
-            putExtra(EXTRA_IP, ip)
-            putExtra(EXTRA_PORT, port)
-        }
+        val intent = Intent(this, TrackNewDataActivity::class.java).apply{}
         startActivity(intent)
     }
 
     fun startAddDatapointsActivity(view: View)
     {
-        val intent = Intent(this, AddDatapointsActivity::class.java).apply{
-            putExtra(EXTRA_IP, ip)
-            putExtra(EXTRA_PORT, port)
-        }
+        val intent = Intent(this, AddDatapointsActivity::class.java).apply{}
         startActivity(intent)
     }
 
     fun startDisplayGraphActivity(view: View)
     {
-        val intent = Intent(this, DisplayGraphActivity::class.java).apply{
-            putExtra(EXTRA_IP, ip)
-            putExtra(EXTRA_PORT, port)
-        }
+        val intent = Intent(this, DisplayGraphActivity::class.java).apply{}
         startActivity(intent)
     }
 
     fun connectionActivity(view: View)
     {
-        val intent = Intent(this, ConnectionActivity::class.java).apply{
-            putExtra(EXTRA_IP, ip)
-            putExtra(EXTRA_PORT, port)
-        }
+        val intent = Intent(this, ConnectionActivity::class.java).apply{}
         startActivity(intent)
     }
 }
