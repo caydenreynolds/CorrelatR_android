@@ -4,7 +4,7 @@ import android.os.AsyncTask
 import com.example.protos.Client
 import com.example.protos.Server
 
-class RequestGraphTask: AsyncTask<String, Unit, Server.ServerMessage>()
+class RequestGraphTask : AsyncTask<String, Unit, Server.ServerMessage>()
 {
     //Sends a GraphRequest message to the server
     //Args:

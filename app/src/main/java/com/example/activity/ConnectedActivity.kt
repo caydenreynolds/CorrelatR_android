@@ -1,7 +1,6 @@
 package com.example.activity
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.correlatr.R

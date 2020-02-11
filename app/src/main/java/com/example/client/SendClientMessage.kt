@@ -34,7 +34,6 @@ fun sendClientMessage(clientMessage: Client.ClientMessage, ip: String, port: Str
     }
     catch (e: Throwable)
     {
-        //TODO: Instead of returning null, construct a servermessage with error=true.
         val statusMessage = Server.StatusMessage.newBuilder()
         statusMessage.error = true
         statusMessage.text = "Cannot connect"

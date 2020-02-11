@@ -17,7 +17,6 @@ class PingServerTask : AsyncTask<String, Unit, Server.StatusMessage>()
     override fun doInBackground(vararg params: String): Server.StatusMessage
     {
         val clientMessage = Client.ClientMessage.newBuilder().setPing(Client.Ping.newBuilder().build()).build()
-        val response = sendClientMessage(clientMessage, params[0], params[1])
-        return response.statusMessage
+        return sendClientMessage(clientMessage, params[0], params[1]).statusMessage
     }
 }
