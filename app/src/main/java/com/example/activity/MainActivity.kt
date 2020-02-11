@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import com.example.correlatr.R
 
+//TODO: Migrate project to androidx
+
 class MainActivity : ConnectedActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
