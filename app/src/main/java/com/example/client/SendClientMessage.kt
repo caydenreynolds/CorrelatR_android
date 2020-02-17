@@ -8,11 +8,11 @@ import java.nio.ByteBuffer
 
 //Sends the given ClientMessage to the specified ip and port.
 //Returns: Whether the connection was successful
-fun sendClientMessage(clientMessage: Client.ClientMessage, ip: String, port: String): Server.ServerMessage
+fun sendClientMessage(clientMessage: Client.ClientMessage, ip: String, port: Int): Server.ServerMessage
 {
     try
     {
-        Socket(InetAddress.getByName(ip), port.toInt()).use{
+        Socket(InetAddress.getByName(ip), port).use{
 
             //Send the message
             val clientMessageBytes = clientMessage.toByteArray()

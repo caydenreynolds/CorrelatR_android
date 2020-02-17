@@ -13,13 +13,13 @@ import com.google.android.material.snackbar.Snackbar
 
 class TrackNewDataActivity : ConnectedActivity() {
 
-    var columns = ArrayList<String>()
+    lateinit var columns: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_track_new_data)
 
-        val response = GetColumnsTask().execute(ip, port).get()
+        val response = GetColumnsTask(ip, port).execute().get()
         if (response.statusMessage.error)
         {
             Snackbar.make(findViewById<RecyclerView>(R.id.trackedDataRecycler), response.statusMessage.text, Snackbar.LENGTH_SHORT).show()
@@ -31,14 +31,13 @@ class TrackNewDataActivity : ConnectedActivity() {
             layoutManager = LinearLayoutManager(context)
             adapter = TrackNewDataAdapter(columns, supportFragmentManager)
         }
-
     }
 
     fun sendNewDataToTrack(view: View)
     {
         //Tell the server
         val newColumn = findViewById<EditText>(R.id.newcolumnField).text.toString()
-        val taskResult = AddColumnTask().execute(ip, port, newColumn).get()
+        val taskResult = AddColumnTask(ip, port, newColumn).execute().get()
         Snackbar.make(view, taskResult.text, Snackbar.LENGTH_SHORT).show()
 
         //Update the view

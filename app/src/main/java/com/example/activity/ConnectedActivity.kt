@@ -7,7 +7,7 @@ import com.example.correlatr.R
 
 abstract class ConnectedActivity : AppCompatActivity() {
     var ip = ""
-    var port = ""
+    var port = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +17,7 @@ abstract class ConnectedActivity : AppCompatActivity() {
     fun setIP() {
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
         ip = pref.getString(getString(R.string.ip_key), "") ?: ""
-        port = pref.getString(getString(R.string.port_key), "") ?: ""
+
+        port = pref.getInt(getString(R.string.port_key), -1)
     }
 }

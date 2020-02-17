@@ -4,24 +4,20 @@ import android.os.AsyncTask
 import com.example.protos.Client
 import com.example.protos.Server
 
-class RequestGraphTask : AsyncTask<String, Unit, Server.ServerMessage>()
+//Sends a GraphRequest message to the server, to get a a graph with horizontal axis 'horizAxis'
+//and vertical axis 'vertAxis'
+class RequestGraphTask(val ip: String, val port: Int, val horizAxis: String, val vertAxis: String) :
+      AsyncTask<Unit, Unit, Server.ServerMessage>()
 {
-    //Sends a GraphRequest message to the server
-    //Args:
-    //  params[0]: IP to connect to
-    //  params[1]: Port number to connect to
-    //  params[2]: Vertical axis name
-    //  params[3]: Horizontal axis name
-    override fun doInBackground(vararg params: String): Server.ServerMessage
+    override fun doInBackground(vararg params: Unit): Server.ServerMessage
     {
         val request = Client.GraphRequest.newBuilder()
-        request.vertical = params[2]
-        request.horizontal = params[3]
+        request.vertical = vertAxis
+        request.horizontal = horizAxis
 
         val clientMessage = Client.ClientMessage.newBuilder()
         clientMessage.setGraphRequest(request)
 
-        return sendClientMessage(clientMessage.build(), params[0], params[1])
-
+        return sendClientMessage(clientMessage.build(), ip, port)
     }
 }

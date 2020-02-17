@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:textAppearance="?attr/textAppearanceListItem"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:text="Column Name" />
 
     <ImageButton
         android:id="@+id/edit_button"

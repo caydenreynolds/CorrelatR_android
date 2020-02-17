@@ -4,18 +4,15 @@ import android.os.AsyncTask
 import com.example.protos.Client
 import com.example.protos.Server
 
-class RemoveColumnTask: AsyncTask<String, Unit, Server.StatusMessage>()
+//Sends a ChangeColumnMessage to the server, to remove the column with the name 'columnToRemove'
+class RemoveColumnTask(val ip: String, val port: Int, val columnToRemove: String) :
+      AsyncTask<Unit, Unit, Server.StatusMessage>()
 {
-    //Sends a ChangeColumnMessage to the server
-    //Args:
-    //  params[0]: IP to connect to
-    //  params[1]: Port number to connect to
-    //  params[2]: Column to remove
-    override fun doInBackground(vararg params: String): Server.StatusMessage?
+    override fun doInBackground(vararg params: Unit): Server.StatusMessage?
     {
         val change = Client.ChangeColumn.newBuilder()
-        change.oldColumnName = params[2]
+        change.oldColumnName = columnToRemove
         val clientMessage = Client.ClientMessage.newBuilder().setChangeColumn(change).build()
-        return sendClientMessage(clientMessage, params[0], params[1]).statusMessage
+        return sendClientMessage(clientMessage, ip, port).statusMessage
     }
 }

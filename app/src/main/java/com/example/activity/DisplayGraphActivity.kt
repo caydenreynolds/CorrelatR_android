@@ -13,7 +13,7 @@ class DisplayGraphActivity : ConnectedActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_graph)
 
-        val taskResult = RequestGraphTask().execute(ip, port, "foo", "bar").get()
+        val taskResult = RequestGraphTask(ip, port, "foo", "bar").execute().get()
         Snackbar.make(findViewById(R.id.display_img), taskResult.statusMessage.text, Snackbar.LENGTH_SHORT).show()
 
         if (taskResult != null && taskResult.graphImage != null)

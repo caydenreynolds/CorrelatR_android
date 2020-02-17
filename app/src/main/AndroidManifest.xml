@@ -15,7 +15,8 @@
         <activity android:name="com.example.activity.DisplayGraphActivity"></activity>
         <activity
             android:name="com.example.activity.AddDatapointsActivity"
-            android:parentActivityName="com.example.activity.MainActivity" />
+            android:parentActivityName="com.example.activity.MainActivity"
+            android:windowSoftInputMode="adjustNothing" />
         <activity android:name="com.example.activity.TrackNewDataActivity" />
         <activity android:name="com.example.activity.MainActivity">
         <intent-filter>

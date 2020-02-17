@@ -8,15 +8,13 @@ import java.net.InetAddress
 import java.net.Socket
 import java.nio.ByteBuffer
 
-class PingServerTask : AsyncTask<String, Unit, Server.StatusMessage>()
+//Pings server to ensure we can connect.
+class PingServerTask(val ip: String, val port: Int) :
+      AsyncTask<Unit, Unit, Server.StatusMessage>()
 {
-    //Pings server to ensure we can connect.
-    //Args:
-    //  params[0]: IP to connect to
-    //  params[1]: Port number to connect to
-    override fun doInBackground(vararg params: String): Server.StatusMessage
+    override fun doInBackground(vararg params: Unit): Server.StatusMessage
     {
         val clientMessage = Client.ClientMessage.newBuilder().setPing(Client.Ping.newBuilder().build()).build()
-        return sendClientMessage(clientMessage, params[0], params[1]).statusMessage
+        return sendClientMessage(clientMessage, ip, port).statusMessage
     }
 }
