@@ -21,7 +21,7 @@ class MainActivity : ConnectedActivity() {
 
     fun startAddDatapointsActivity(view: View)
     {
-        val intent = Intent(this, AddDatapointsActivity::class.java).apply{}
+        val intent = Intent(this, AddDataPointsActivity::class.java).apply{}
         startActivity(intent)
     }
 

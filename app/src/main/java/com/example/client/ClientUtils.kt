@@ -2,17 +2,19 @@ package com.example.client
 
 import com.example.protos.Client
 import com.example.protos.Server
+import com.example.protos.Shared
+import com.example.recycler.AddDataPointsAdapter
 import java.net.InetAddress
 import java.net.Socket
 import java.nio.ByteBuffer
 
 //Sends the given ClientMessage to the specified ip and port.
 //Returns: Whether the connection was successful
-fun sendClientMessage(clientMessage: Client.ClientMessage, ip: String, port: String): Server.ServerMessage
+fun sendClientMessage(clientMessage: Client.ClientMessage, ip: String, port: Int): Server.ServerMessage
 {
     try
     {
-        Socket(InetAddress.getByName(ip), port.toInt()).use{
+        Socket(InetAddress.getByName(ip), port).use{
 
             //Send the message
             val clientMessageBytes = clientMessage.toByteArray()
@@ -43,4 +45,15 @@ fun sendClientMessage(clientMessage: Client.ClientMessage, ip: String, port: Str
 
         return serverMessage.build()
     }
+}
+
+//Gets all of the column names from a list of DataPoints, and returns the list of column names
+fun GetColumnNamesFromDataPoints(dataPoints: MutableList<Shared.DataPoint>): MutableList<String>
+{
+    val columnNames = ArrayList<String>(dataPoints.size)
+
+    for (point in dataPoints)
+        columnNames.add(point.columnName)
+
+    return columnNames
 }

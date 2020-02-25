@@ -14,8 +14,9 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.example.activity.DisplayGraphActivity"></activity>
         <activity
-            android:name="com.example.activity.AddDatapointsActivity"
-            android:parentActivityName="com.example.activity.MainActivity" />
+            android:name="com.example.activity.AddDataPointsActivity"
+            android:parentActivityName="com.example.activity.MainActivity"
+            android:windowSoftInputMode="adjustNothing" />
         <activity android:name="com.example.activity.TrackNewDataActivity" />
         <activity android:name="com.example.activity.MainActivity">
         <intent-filter>

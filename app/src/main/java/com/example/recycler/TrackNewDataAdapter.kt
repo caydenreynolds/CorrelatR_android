@@ -1,6 +1,7 @@
 package com.example.recycler
 
 import android.preference.PreferenceManager
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,23 +17,23 @@ import kotlinx.android.synthetic.main.recycler_tracked_data.view.*
 
 class TrackNewDataAdapter(private val data: MutableList<String>,
                           private val fragmentManager: FragmentManager
-                         ) : RecyclerView.Adapter<TrackNewDataHolder>()
+                         ) : RecyclerView.Adapter<RecyclerHolder>()
 {
     var ip = ""
-    var port = ""
+    var port = -1
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackNewDataHolder
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerHolder
     {
         val pref = PreferenceManager.getDefaultSharedPreferences(parent.context)
         ip = pref.getString(parent.context.getString(R.string.ip_key), "") ?: ""
-        port = pref.getString(parent.context.getString(R.string.port_key), "") ?: ""
+        port = pref.getInt(parent.context.getString(R.string.port_key), -1)
 
-        return TrackNewDataHolder(LayoutInflater.from(parent.context)
+        return RecyclerHolder(LayoutInflater.from(parent.context)
                .inflate(R.layout.recycler_tracked_data, parent, false) as View
         )
     }
 
-    override fun onBindViewHolder(holder: TrackNewDataHolder, position: Int)
+    override fun onBindViewHolder(holder: RecyclerHolder, position: Int)
     {
         holder.view.column_name.text = data[position]
 
@@ -42,7 +43,7 @@ class TrackNewDataAdapter(private val data: MutableList<String>,
             fragment.callbacks.add {
                 if (it)
                 {
-                    val response = RemoveColumnTask().execute(ip, port, data[position]).get()
+                    val response = RemoveColumnTask(ip, port, data[position]).execute().get()
                     Snackbar.make(holder.view, response.text, Snackbar.LENGTH_SHORT).show()
                     if (!response.error)
                     {
@@ -55,15 +56,15 @@ class TrackNewDataAdapter(private val data: MutableList<String>,
         }
 
         holder.view.edit_button.setOnClickListener {
-            val fragment = GetTextFragment("Enter a new name", data[position])
+            val fragment = GetTextFragment("Enter a new name", data[position], InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE)
             fragment.callbacks.add {
-                if (it != "")
+                if (it.text != "")
                 {
-                    val response = RenameColumnTask().execute(ip, port, data[position], it).get()
+                    val response = RenameColumnTask(ip, port, data[position], it.text).execute().get()
                     Snackbar.make(holder.view, response.text, Snackbar.LENGTH_SHORT).show()
                     if (!response.error)
                     {
-                        data[position] = it
+                        data[position] = it.text
                         notifyItemChanged(position)
                     }
                 }
