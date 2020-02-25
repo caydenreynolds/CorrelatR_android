@@ -6,6 +6,7 @@ import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.client.AddColumnTask
+import com.example.client.GetColumnNamesFromDataPoints
 import com.example.client.GetColumnsTask
 import com.example.correlatr.R
 import com.example.recycler.TrackNewDataAdapter
@@ -13,7 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class TrackNewDataActivity : ConnectedActivity() {
 
-    lateinit var columns: ArrayList<String>
+    lateinit var columns: MutableList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,7 @@ class TrackNewDataActivity : ConnectedActivity() {
             Snackbar.make(findViewById<RecyclerView>(R.id.trackedDataRecycler), response.statusMessage.text, Snackbar.LENGTH_SHORT).show()
         }
 
-        columns = protobufListToArrayList(response.columnNamesList)
+        columns = GetColumnNamesFromDataPoints(response.dataPointsList)
         findViewById<RecyclerView>(R.id.trackedDataRecycler).apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
@@ -46,17 +47,5 @@ class TrackNewDataActivity : ConnectedActivity() {
             columns.add(newColumn)
             findViewById<RecyclerView>(R.id.trackedDataRecycler).adapter?.notifyItemInserted(columns.size-1)
         }
-    }
-
-    //We need to convert the immutable protobuf list to a mutable array list
-    //Yes, the protobuf list *says* it's mutable. But that's a lie.
-    fun protobufListToArrayList(protoList: List<String>): ArrayList<String>
-    {
-        val result = ArrayList<String>()
-        for (str in protoList)
-        {
-            result.add(str)
-        }
-        return result
     }
 }
