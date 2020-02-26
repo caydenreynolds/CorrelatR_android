@@ -6,7 +6,7 @@ import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.client.AddColumnTask
-import com.example.client.GetColumnNamesFromDataPoints
+import com.example.client.getColumnNamesFromDataPoints
 import com.example.client.GetColumnsTask
 import com.example.correlatr.R
 import com.example.recycler.TrackNewDataAdapter
@@ -26,7 +26,7 @@ class TrackNewDataActivity : ConnectedActivity() {
             Snackbar.make(findViewById<RecyclerView>(R.id.trackedDataRecycler), response.statusMessage.text, Snackbar.LENGTH_SHORT).show()
         }
 
-        columns = GetColumnNamesFromDataPoints(response.dataPointsList)
+        columns = getColumnNamesFromDataPoints(response.dataPointsList)
         findViewById<RecyclerView>(R.id.trackedDataRecycler).apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
