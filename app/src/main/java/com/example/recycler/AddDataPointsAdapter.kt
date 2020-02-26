@@ -43,7 +43,8 @@ class AddDataPointsAdapter(val dataPoints: MutableList<DataPoint>,
                 fragment.callbacks.add {
                     if (!it.cancelled)
                     {
-                        dataPoints[position] = DataPoint(dataPoints[position].columnName, it.text.toDouble())
+                        try { dataPoints[position] = DataPoint(dataPoints[position].columnName, it.text.toDouble()) }
+                        catch (_: Throwable) { dataPoints[position] =  DataPoint(dataPoints[position].columnName, null) }
                         notifyItemChanged(position)
                     }
                 }
