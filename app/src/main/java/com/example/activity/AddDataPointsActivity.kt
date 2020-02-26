@@ -13,6 +13,7 @@ import com.example.recycler.AddDataPointsAdapter
 import com.google.android.material.snackbar.Snackbar
 import java.lang.Exception
 import java.util.*
+import java.util.Calendar.*
 
 class AddDataPointsActivity : ConnectedActivity() {
 
@@ -24,7 +25,9 @@ class AddDataPointsActivity : ConnectedActivity() {
 
         val calendar = findViewById<CalendarView>(R.id.dateSelect)
         calendar.setOnDateChangeListener { view, year, month, day -> setRecyclerView(view, year, month, day)}
-        calendar.date = calendar.date //Execute setRecyclerView
+        val todayCalendar = Calendar.getInstance()
+        setRecyclerView(calendar, todayCalendar.get(YEAR), todayCalendar.get(MONTH),
+            todayCalendar.get(DAY_OF_MONTH))
     }
 
     fun setRecyclerView(view: CalendarView, year: Int, month: Int, day: Int)
