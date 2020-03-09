@@ -6,7 +6,7 @@ import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.client.AddColumnTask
-import com.example.client.getColumnNamesFromDataPoints
+import com.example.data.getColumnNamesFromDataPoints
 import com.example.client.GetColumnsTask
 import com.example.correlatr.R
 import com.example.recycler.TrackNewDataAdapter

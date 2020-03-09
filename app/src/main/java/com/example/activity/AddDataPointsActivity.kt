@@ -40,10 +40,6 @@ class AddDataPointsActivity : ConnectedActivity() {
         else
         {
             val columns = serverResponseToList(response.dataPointsList)
-            if (response.dataPointsList.size != 4)
-            {
-                throw Exception(columns.size.toString())
-            }
             findViewById<RecyclerView>(R.id.addDatapointsRecycler).apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(context)

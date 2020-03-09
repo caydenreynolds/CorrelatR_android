@@ -1,10 +1,8 @@
 package com.example.correlatr.client
 
-import com.example.client.getColumnNamesFromDataPoints
 import com.example.client.sendClientMessage
 import com.example.protos.Client
 import com.example.protos.Server
-import com.example.protos.Shared
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,33 +11,6 @@ import java.nio.ByteBuffer
 
 class ClientUtilsTest
 {
-    @Test
-    fun getColumnNamesFromDataPointsTest()
-    {
-        val dataPoints = MutableList(0) { Shared.DataPoint.newBuilder().build()}
-
-        val point0 = Shared.DataPoint.newBuilder()
-        point0.columnName = "foo"
-        point0.value = 4.5
-        dataPoints.add(point0.build())
-
-        val point1 = Shared.DataPoint.newBuilder()
-        point1.columnName = "bar"
-        point1.value = 0.0
-        dataPoints.add(point1.build())
-
-        val point2 = Shared.DataPoint.newBuilder()
-        point2.columnName = "baz"
-        point2.`null` = true
-        dataPoints.add(point2.build())
-
-        val results = getColumnNamesFromDataPoints(dataPoints)
-
-        assertEquals(results[0], "foo")
-        assertEquals(results[1], "bar")
-        assertEquals(results[2], "baz")
-    }
-
     @Test
     fun sendClientMessageTest()
     {
