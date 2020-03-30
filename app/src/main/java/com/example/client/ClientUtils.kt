@@ -30,7 +30,11 @@ fun sendClientMessage(clientMessage: Client.ClientMessage, ip: String, port: Int
             inStream.read(lenBytes)
             val messageLen = ByteBuffer.allocate(4).put(lenBytes).getInt(0)
             val serverMessageBytes = ByteArray(messageLen)
-            inStream.read(serverMessageBytes)
+
+            var offset = 0
+            while (offset < messageLen)
+                offset += inStream.read(serverMessageBytes, offset, messageLen - offset)
+
             return Server.ServerMessage.parseFrom(serverMessageBytes)
         }
     }
@@ -45,15 +49,4 @@ fun sendClientMessage(clientMessage: Client.ClientMessage, ip: String, port: Int
 
         return serverMessage.build()
     }
-}
-
-//Gets all of the column names from a list of DataPoints, and returns the list of column names
-fun getColumnNamesFromDataPoints(dataPoints: MutableList<Shared.DataPoint>): MutableList<String>
-{
-    val columnNames = ArrayList<String>(dataPoints.size)
-
-    for (point in dataPoints)
-        columnNames.add(point.columnName)
-
-    return columnNames
 }
