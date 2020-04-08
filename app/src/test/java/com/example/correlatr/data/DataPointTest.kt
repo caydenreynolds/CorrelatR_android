@@ -1,6 +1,7 @@
 package com.example.correlatr.data
 
 import com.example.data.DataPoint
+import com.example.data.getColumnNamesFromDataPoints
 import com.example.data.listToClientMessage
 import com.example.data.serverResponseToList
 import com.example.protos.Shared
@@ -54,7 +55,32 @@ class DataPointTest {
         assertEquals(DataPoint("foo", 4.5), results[0])
         assertEquals(DataPoint("bar", 0.0), results[1])
         assertEquals(DataPoint("baz", null), results[2])
+    }
 
+    @Test
+    fun getColumnNamesFromDataPointsTest()
+    {
+        val dataPoints = MutableList(0) { Shared.DataPoint.newBuilder().build()}
 
+        val point0 = Shared.DataPoint.newBuilder()
+        point0.columnName = "foo"
+        point0.value = 4.5
+        dataPoints.add(point0.build())
+
+        val point1 = Shared.DataPoint.newBuilder()
+        point1.columnName = "bar"
+        point1.value = 0.0
+        dataPoints.add(point1.build())
+
+        val point2 = Shared.DataPoint.newBuilder()
+        point2.columnName = "baz"
+        point2.`null` = true
+        dataPoints.add(point2.build())
+
+        val results = getColumnNamesFromDataPoints(dataPoints)
+
+        assertEquals(results[0], "foo")
+        assertEquals(results[1], "bar")
+        assertEquals(results[2], "baz")
     }
 }

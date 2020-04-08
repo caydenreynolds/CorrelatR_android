@@ -1,10 +1,16 @@
 package com.example.correlatr.client
 
+//<<<<<<< HEAD
+//import com.example.client.sendClientMessage
+//import com.example.protos.Client
+//import com.example.protos.Server
+//=======
 import com.example.client.getColumnNamesFromDataPoints
 import com.example.client.sendClientMessage
 import com.example.protos.Client
 import com.example.protos.Server
 import com.example.protos.Shared
+//>>>>>>> master
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -14,6 +20,8 @@ import java.nio.ByteBuffer
 class ClientUtilsTest
 {
     @Test
+//<<<<<<< HEAD
+//=======
     fun getColumnNamesFromDataPointsTest()
     {
         val dataPoints = MutableList(0) { Shared.DataPoint.newBuilder().build()}
@@ -41,6 +49,7 @@ class ClientUtilsTest
     }
 
     @Test
+//>>>>>>> master
     fun sendClientMessageTest()
     {
         val clientMessage = Client.ClientMessage.newBuilder()

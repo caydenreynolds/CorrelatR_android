@@ -30,7 +30,11 @@ fun sendClientMessage(clientMessage: Client.ClientMessage, ip: String, port: Int
             inStream.read(lenBytes)
             val messageLen = ByteBuffer.allocate(4).put(lenBytes).getInt(0)
             val serverMessageBytes = ByteArray(messageLen)
-            inStream.read(serverMessageBytes)
+
+            var offset = 0
+            while (offset < messageLen)
+                offset += inStream.read(serverMessageBytes, offset, messageLen - offset)
+
             return Server.ServerMessage.parseFrom(serverMessageBytes)
         }
     }
