@@ -79,5 +79,4 @@
         app:layout_constraintBottom_toTopOf="@+id/verticalSpinner"
         app:layout_constraintEnd_toEndOf="@+id/verticalSpinner"
         app:layout_constraintStart_toStartOf="@+id/verticalSpinner" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

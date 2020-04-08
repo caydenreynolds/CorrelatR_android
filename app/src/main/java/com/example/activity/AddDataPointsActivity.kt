@@ -24,7 +24,6 @@ class AddDataPointsActivity : ConnectedActivity() {
         setContentView(R.layout.activity_add_datapoints)
 
         val calendar = findViewById<CalendarView>(R.id.dateSelect)
-
         calendar.setOnDateChangeListener { view, year, month, day -> setRecyclerView(view, year, month, day)}
         val todayCalendar = Calendar.getInstance()
         setRecyclerView(calendar, todayCalendar.get(YEAR), todayCalendar.get(MONTH),

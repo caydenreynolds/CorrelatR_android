@@ -50,3 +50,14 @@ fun sendClientMessage(clientMessage: Client.ClientMessage, ip: String, port: Int
         return serverMessage.build()
     }
 }
+
+//Gets all of the column names from a list of DataPoints, and returns the list of column names
+fun getColumnNamesFromDataPoints(dataPoints: MutableList<Shared.DataPoint>): MutableList<String>
+{
+    val columnNames = ArrayList<String>(dataPoints.size)
+
+    for (point in dataPoints)
+        columnNames.add(point.columnName)
+
+    return columnNames
+}
